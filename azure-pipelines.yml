@@ -11,15 +11,20 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: oc-setup@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OCP'
+    version: 'https://downloads-openshift-console.apps.cluster-66c2.66c2.sandbox43.opentlc.com/amd64/linux/oc.tar'
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'OCP'
-    version: '4.7'
+    version: '4.8'
     cmd: 'oc start-build nodejs-ex --follow'
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'OCP'
-    version: '4.7'
+    version: '4.8'
     cmd: 'oc status'
