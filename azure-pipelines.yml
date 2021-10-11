@@ -8,7 +8,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'fedora-latest'
 
 steps:
 - task: oc-setup@2
