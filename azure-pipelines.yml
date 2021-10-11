@@ -19,25 +19,25 @@ steps:
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'OCP'
-    cmd: 'oc new-app https://github.com/caetanomedeiros/nodejs-ex.git -l name=demoapp -n demo'
-    ignoreFlag: true
-- task: oc-cmd@2
-  inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP'
-    cmd: 'oc expose service/nodejs-ex -n demo'
-    ignoreFlag: true
-- task: oc-cmd@2
-  inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP'
     cmd: 'oc new-project demo'
     ignoreFlag: true
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'OCP'
+    cmd: 'oc new-app https://github.com/caetanomedeiros/nodejs-ex.git -l name=demoapp -n demo'
+    ignoreFlag: true
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OCP'
     cmd: 'oc start-build nodejs-ex --follow -n demo'
+- task: oc-cmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OCP'
+    cmd: 'oc expose service/nodejs-ex -n demo'
+    ignoreFlag: true
 - task: oc-cmd@2
   inputs:
     connectionType: 'OpenShift Connection Service'
