@@ -11,6 +11,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: OcConditionalCmd@2
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OCP'
+    cmd: 'oc new-project demo'
+    ignoreFlag: true
+    condition: 'not_exists'
+    resource: 'oc project demo'
 - task: oc-setup@2
   inputs:
     connectionType: 'OpenShift Connection Service'
