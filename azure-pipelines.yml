@@ -14,38 +14,38 @@ steps:
 - task: oc-setup@2
   displayName: 'Setup Openshift CLI Environment'
   inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP 66c2'
+    connectionType: 'Kubernetes Service Connection'
+    openshiftService: 'ocp-khm78-demo-stage-1680697217129'
 - task: oc-cmd@2
   displayName: 'Create New Project on Openshift'
   inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP 66c2'
+    connectionType: 'Kubernetes Service Connection'
+    openshiftService: 'ocp-khm78-demo-stage-1680697217129'
     cmd: 'oc new-project demo'
     ignoreFlag: true
 - task: oc-cmd@2
   displayName: 'Create New Application on Openshift from Git Repository'
   inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP 66c2'
+    connectionType: 'Kubernetes Service Connection'
+    openshiftService: 'ocp-khm78-demo-stage-1680697217129'
     cmd: 'oc new-app https://github.com/caetanomedeiros/nodejs-ex.git -l name=demoapp -n demo'
     ignoreFlag: true
 - task: oc-cmd@2
   displayName: 'Create New Build on Openshift'
   inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP 66c2'
+    connectionType: 'Kubernetes Service Connection'
+    openshiftService: 'ocp-khm78-demo-stage-1680697217129'
     cmd: 'oc start-build nodejs-ex --follow -n demo'
 - task: oc-cmd@2
   displayName: 'Create New Router for Application on Openshift'
   inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP 66c2'
+    connectionType: 'Kubernetes Service Connection'
+    openshiftService: 'ocp-khm78-demo-stage-1680697217129'
     cmd: 'oc expose service/nodejs-ex -n demo'
     ignoreFlag: true
 - task: oc-cmd@2
   displayName: 'Check Application Deployment Status on Openshift'
   inputs:
-    connectionType: 'OpenShift Connection Service'
-    openshiftService: 'OCP 66c2'
+    connectionType: 'Kubernetes Service Connection'
+    openshiftService: 'ocp-khm78-demo-stage-1680697217129'
     cmd: 'oc status -n demo'
