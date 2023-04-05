@@ -29,21 +29,20 @@ steps:
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'ocp-khm78'
-    #cmd: 'oc new-app https://github.com/redhat-developer/s2i-dotnetcore-ex -l name=demoapp -n demo'
-    cmd: 'oc new-app dotnet:7.0-ubi8~https://github.com/redhat-developer/s2i-dotnetcore-ex#dotnet-7.0 --context-dir demo'
+    cmd: 'oc new-app https://github.com/caetanomedeiros/nodejs-ex.git -l name=demoapp -n demo'
     ignoreFlag: true
 - task: oc-cmd@2
   displayName: 'Create New Build on Openshift'
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'ocp-khm78'
-    cmd: 'oc start-build s2i-dotnetcore-ex --follow -n demo'
+    cmd: 'oc start-build nodejs-ex --follow -n demo'
 - task: oc-cmd@2
   displayName: 'Create New Router for Application on Openshift'
   inputs:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'ocp-khm78'
-    cmd: 'oc expose service/s2i-dotnetcore-ex -n demo'
+    cmd: 'oc expose service/nodejs-ex -n demo'
     ignoreFlag: true
 - task: oc-cmd@2
   displayName: 'Check Application Deployment Status on Openshift'
